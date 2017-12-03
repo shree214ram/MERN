@@ -1,0 +1,246 @@
+.navbar {
+	padding-left: 20px;
+	height: 80px;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	background-color: #fff;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 20;
+    flex-direction: row;
+}
+.navbar .container {
+	width: 100%;
+}
+.navbar, .navbar-search {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border-bottom: 1px solid #e5e5e5
+}
+.navbar-search {
+	margin-right: auto;
+	padding: 10px 5px 10px 10px
+}
+.navbar-search-text {
+	min-width: 300px;
+	font-size: 13px;
+	color: #7f7f7f;
+	border: none;
+	background-color: transparent
+}
+.navbar-search-submit:focus, .navbar-search-text:focus {
+	outline: none
+}
+.navbar-search-submit {
+	margin: 0 10px 0 0;
+	padding: 0;
+	width: 23px;
+	height: 18px;
+	border: none;
+	background-color: transparent;
+	background-image: url(/assets/images/icons/ico-search.svg);
+	background-size: 23px 18px
+}
+.navbar-actions, .navbar-actions li {
+	height: 100%
+}
+.navbar-actions li {
+	display: block;
+	float: left
+}
+.navbar-action, .navbar-action-settings {
+	height: 100%;
+	padding: 0 15px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	text-align: center;
+	text-decoration: none;
+	position: relative;
+	font-size: 12px;
+	color: #7f7f7f
+}
+.navbar-action-notification {
+	position: absolute;
+	top: -7px;
+	right: -7px;
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	font-size: 11px;
+	color: #fff;
+	text-align: center;
+	border-radius: 50%;
+	background: #0070BF;
+	background: -webkit-gradient(linear, left bottom, right top, from(#0070BF), to(#70b3eb));
+	background: linear-gradient(to top right, #0070BF 0, #70b3eb);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0070BF", endColorstr="#70b3eb", GradientType=1)
+}
+.navbar-action-settings:hover svg {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg)
+}
+.navbar-action-icon {
+	height: 30px;
+	display: inline-block;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	position: relative;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0)
+}
+.navbar-action-icon svg {
+	height: 100%;
+	width: 25px;
+}
+.navbar-action-icon--learn svg {
+	height: 20px;
+}
+.navbar-action:hover .navbar-action-icon--learn svg {
+	height: 15px;
+	margin-left: 3px
+}
+.navbar-action:hover .navbar-action-icon--phone svg {
+	margin-right: 2px
+}
+.navbar-action:hover .navbar-action-icon--registration svg {
+	margin-left: 3px
+}
+.navbar-action-icon:hover svg * {
+	stroke: #7bcfe0!important
+}
+.navbar-action-text {
+	margin-top: 8px
+}
+.navbar-user, .dropdown-toggle {
+	height: 100%;
+	padding-left: 25px;
+	padding-right: 10px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+	border-left: 1px solid #fff;
+	text-decoration: none
+}
+.navbar-name {
+	color: #868787;
+	font-size: 14px;
+	line-height: 1.2;
+	margin-right: auto;
+	border-left: 1px solid #e5e5e5;
+}
+.navbar-avatar {
+	width: 40px;
+	height: 40px;
+	margin-right: 20px;
+	border-radius: 50%;
+	-webkit-box-shadow: 0 0 15px rgba(23,93,157,.5);
+	box-shadow: 0 0 15px rgba(23,93,157,.5)
+}
+.navbar-dropdown {
+	width: 12px;
+	height: 10px;
+	margin-left: 50px;
+	margin-right: 20px;
+	margin-top: -5px
+}
+.navbar-dropdown-menu {
+	width: 250px;
+	position: absolute;
+	top: 57px;
+	right: 0;
+	padding: 5px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 3px 3px #eee;
+	box-shadow: 0 3px 3px #eee;
+	display: none;
+	padding: 13px
+}
+.navbar-dropdown-menu.active {
+	display: block
+}
+.navbar-actions {
+	position: absolute;
+	right: 5px;
+	top:0px;
+	z-index: 99;
+	min-width: 17%;
+  } 
+  .dropdown-menu {
+	padding:5px 15px;
+	right: 0px;
+	left: auto;
+	width:200px;
+  }
+  .userList {
+	margin: 8px 0 5px;
+    border-bottom: 1px dashed #ededed;
+    padding-bottom: 10px;
+  }
+  .userList:last-child {
+	  border-bottom: none;
+  }
+.navbar-nav>li {
+	height:70px;
+}
+.navbar-nav>li>a {
+	line-height: 60px;
+}
+.dropdown-menu {
+	width:230px;
+}
+.navbar-default .navbar-nav>.navbar-name>a, .navbar-default .navbar-nav>.navbar-name>a:focus, .navbar-default .navbar-nav>.navbar-name>a:hover {
+	padding-left: 20px;
+	padding-right:20px;
+}
+.notify-dropdown .caret {
+	display: none;
+}
+.notify-dropdown .navbar-action-icon {
+	margin-top: 10px;
+}
+.notify-dropdown ul.dropdown-menu {
+	padding:15px;
+}
+.notify-dropdown ul.dropdown-menu>li>a {
+	padding: 0px;
+    font-size: 12px;
+    white-space: pre-line;
+}
+.notify-dropdown .dropdown-menu .divider {
+	margin:5px 0;
+}
+.userIcon {
+	font-size: 18px;
+	color:#0070BF;
+}
+.errorMessage {
+	font-size: 14px;
+	color:#BF0000;
+}

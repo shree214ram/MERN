@@ -4,9 +4,9 @@
 import sql from 'mssql';
 
 /*var dbConfig = {
-  user: "saravana",
-  server: "test.dyndns.biz",
-  password: "saravana100%",
+  user: "",
+  server: "test.",
+  password: "%",
   database: "test",
   port: '1533'
 };*/

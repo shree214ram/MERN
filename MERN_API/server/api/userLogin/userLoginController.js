@@ -74,14 +74,48 @@ exports.post = function (req, res, next) {
       "Name": "Admin",
       "Email": "test@gmail.com",
       "Password": "abc123",
-      "Title": "Hello World"
-    };
+      "Title": "Hello World",
+      "Country": {
+          "id": 1,
+          "name": "India",
+          "operationId": 1
+      },
+      "userGroup": [
+          {
+              "id": 1,
+              "name": "Group1"
+          }
+      ],
+      "userRole": [
+          {
+              "id": 1,
+              "name": "Super Admin"
+          },
+          {
+              "id": 2,
+              "name": "Admin"
+          },
+          {
+              "id": 3,
+              "name": "Accountant"
+          },
+          {
+              "id": 4,
+              "name": "User"
+          }
+      ],
+      "userMenu": [
+          {
+              "id": 1,
+              "name": "Dashboard",
+              "slug": "Dashboard",
+              "svg": "DashboardSvg",
+              "subMenu": []
+          }
+      ]
+  }
     if (userName == userData.Email && password == userData.Password) {
-      const UserSet = {};
-      UserSet.User_Id = userData.User_Id;
-      UserSet.Name = userData.Name;
-      UserSet.Email = userData.Email;
-      UserSet.Title = userData.Title;
+      const UserSet = userData;
       res.send({
         dbData: UserSet
       });

@@ -1,0 +1,228 @@
+.index-tiles {
+	padding: 50px 0;
+	text-align: center
+}
+.index-tile {
+	display: inline-block;
+	margin: 0 25px;
+	text-decoration: none
+}
+.index-tile:hover .index-tile-icon {
+	-webkit-transform: perspective(300px) rotateX(25deg) scale(1.03);
+	transform: perspective(300px) rotateX(25deg) scale(1.03)
+}
+.index-tile-icon {
+	width: 135px;
+	height: 135px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 20px rgba(23,93,157,.25);
+	box-shadow: 0 0 20px rgba(23,93,157,.25);
+	border-radius: 25px;
+	position: relative
+}
+.index-tile-icon svg {
+	width: 100px;
+	height: 110px;
+	position: absolute;
+	bottom: -2px;
+	right: -2px
+}
+.index-tile-title {
+	margin-top: 20px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #175d9d
+}
+.block-links {
+	margin: 50px 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: distribute;
+	justify-content: space-around
+}
+.block-link {
+	margin: 0 30px;
+	display: block;
+	text-decoration: none;
+	width: 30%;
+	-webkit-box-shadow: 0 0 20px 3px rgba(0,0,0,.1);
+	box-shadow: 0 0 20px 3px rgba(0,0,0,.1);
+	border-radius: 5px;
+	overflow: hidden;
+	position: relative
+}
+.block-link[href$=".xlsx"]:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: calc(50% - 60px);
+	left: 0;
+	right: 0;
+	width: 95px;
+	height: 95px;
+	background-repeat: no-repeat;
+	z-index: 1;
+	margin: 0 auto;
+	background-image: url(/assets/images/icons/ico-xlsx-big.svg);
+	-webkit-transform: scale(.75) translateY(50px);
+	transform: scale(.75) translateY(50px);
+	opacity: 0
+}
+.block-link:hover:before {
+	-webkit-transform: scale(1) translateY(0);
+	transform: scale(1) translateY(0);
+	opacity: 1
+}
+.block-link:hover {
+	-webkit-box-shadow: 0 0 30px 5px rgba(0,0,0,.05);
+	box-shadow: 0 0 30px 5px rgba(0,0,0,.05)
+}
+.block-link-thumb {
+	width: 100%;
+	height: auto;
+	opacity: .3
+}
+.block-link-title {
+	padding: 23px 0;
+	border-top: 1px solid #dee0e3;
+	background-color: #fff;
+	color: #8d1f1b;
+	font-size: 18px;
+	text-align: center;
+	font-weight: 700;
+	position: relative
+}
+.block-link-title:after {
+	content: "";
+	width: 75%;
+	position: absolute;
+	top: -2px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	height: 5px
+}
+.block-link:hover .block-link-title:after {
+	width: 80%
+}
+.block-link--01 .block-link-title:after {
+	background-color: #d79e3b
+}
+.block-link--02 .block-link-title:after {
+	background-color: #79291f
+}
+.block-link--03 .block-link-title:after {
+	background-color: #395ea4
+}
+.panel {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 20px 35px
+}
+.section {
+	padding: 0 15px
+}
+.block-title {
+	margin-bottom: 10px;
+	padding: 15px 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border-bottom: 1px solid #c3e3f9
+}
+.block-title-text {
+	margin: 0;
+	font-size: 16px;
+	color: #66a9ee;
+	font-weight: 500;
+	width: 100%;
+	line-height: 30px;
+}
+.block-title-text-download {
+	margin: 0;
+	font-size: 16px;
+	color: #ffffff;
+	font-weight: 500;
+	width: 100%;
+	line-height: 30px;
+}
+.btn-download {
+	padding: 1px 10px;
+	font-size: 12px;
+	border-radius: 2px;
+	width:100%;    //Specify your width here
+	height: 30px;    //Specify your width here
+}
+.block-title-icon {
+	width: 30px;
+	height: 30px;
+	margin-right: 20px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex
+}
+.block-title-icon svg {
+	max-width: 100%;
+	max-height: 100%;
+	width: 100%;
+}
+.panel {
+	background-color: #fff;
+	border-radius: 10px;
+	-webkit-box-shadow: 10px 0 15px 0 rgba(11,172,244,.1);
+	box-shadow: 10px 0 15px 0 rgba(11,172,244,.1);
+	width: 99%;
+}
+
+.bar {
+	fill: steelblue;
+}
+
+.bar:hover {
+	fill: brown;
+}
+
+.axis {
+	font: 10px sans-serif;
+}
+/*.text-anchor {
+	transform: rotate(90deg);
+	transform-origin: left top 0;
+}*/
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.x.axis path {
+	display: none;
+}
+/*.dropdown {
+	width: 100px;
+	display: none;
+	padding: 50px;
+	background: black;
+	z-index:1000;
+	position:absolute;
+}*/
+/*.scrollBars {
+	height: calc(100vh - 180px);
+}
+#scrollBars div:nth-child(3) {
+	background: #cceefc;
+	width: 9px !important;
+}
+.scrollBars div:nth-child(2) div {
+	height: auto !important;
+}
+#scrollBars div:nth-child(3) div {
+	background-color: #00dbde !important;
+	border-radius: 500px !important;
+}*/
