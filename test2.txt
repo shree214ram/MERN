@@ -1,0 +1,16 @@
+export function getRecommendations(id) {
+  return (dispatch) => {
+    axios
+      .get(`${config.BASE_URL}/rest/recommendation/oversightreport/${id}`, HEADER_CONFIG)
+      .then(response => {
+        console.log(response.data);
+        dispatch({
+          type: RecommendationType.GET_RECOMMENDATIONS,
+          data: response.data.dbData
+        });
+      })
+      .catch(err => {
+        dispatch({ type: OversightReportType.OVERSIGHT_ERROR, message: err.response.data.message });
+      });
+  };
+}
