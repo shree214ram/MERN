@@ -1,0 +1,601 @@
+/**
+ * Created by Robin on 01/11/17.
+ */
+import { extend, map, findIndex, forEach, remove } from 'lodash';
+// import { hashHistory } from 'react-router';
+import { OversightReportType, RecommendationType } from '../actions/ActionType';
+
+const DEFAULT_STATE = {
+  oversightReports: [],
+  currentOversightReport: {
+    oversightReportId: null,
+    oversightUnit: undefined,
+    controlNumber: '',
+    reportStage: '',
+    reportNumber: '',
+    reportIssueDate: null,
+    oversightType: undefined,
+    title: '',
+    overseenParties: undefined,
+    detailOverseenParties: '',
+    situation: undefined,
+    operationsCovered: undefined,
+    coverage: undefined,
+    assignmentStartDate: null,
+    assignmentEndDate: null,
+    periodCoveredStart: null,
+    periodCoveredEnd: null,
+    leadOversightOff: undefined,
+    responseDeadline: null,
+    actualRespDate: null,
+    implementationStatus: undefined
+  },
+  oversightReportAction: '',
+  currentRecommendation: {
+    recommendationId: null,
+    oversightReportId: null,
+    recNumber: undefined,
+    reportdescription: '',
+    recommendation: '',
+    actionParties: undefined,
+    primaryRisk: undefined,
+    secondaryRisk: undefined,
+    topic: undefined,
+    criticality: undefined,
+    acceptance: null,
+    deemedImplemented: null,
+    actionRequired: '',
+    menaResponse: '',
+    menaOldResponse: '',
+    plannedImpDate: null,
+    actualImpDate: null,
+    implementationStatus: undefined,
+    respStaffUnit: undefined,
+    respStaffTitle: '',
+    respStaffName: '',
+    extFactIndicator: '',
+    reportReference: ''
+  },
+  recommendations: [],
+  osPostSucess: '',
+  message: '',
+  getOversightReqLoading: true
+};
+
+const setOverSightReports = (state, action) => {
+  const newState = {};
+  const newArr = map(action.data, o => extend({ checked: false }, o));
+  Object.assign(newState, state, { oversightReports: newArr, getOversightReqLoading: false });
+  return newState;
+};
+
+const setOversightReportAction = (state, action) => {
+  const newState = {};
+  Object.assign(newState, state, { oversightReportAction: action.data });
+  return newState;
+};
+
+const osReportPostSuccess = (state, action) => {
+  const currentOversightReport = {};
+  Object.assign(currentOversightReport, state.currentOversightReport);
+  currentOversightReport.oversightReportId = action.data.result.id;
+  const newState = {};
+  Object.assign(newState, state, { osPostSucess: action.data.message, currentOversightReport });
+  // hashHistory.push(`OverSightReportHome/oversightreport/${action.data.result.id}`);
+  return newState;
+};
+
+const osReportUpdateSuccess = (state, action) => {
+  const newState = {};
+  Object.assign(newState, state, { message: action.data });
+  return newState;
+};
+
+const osReportDelete = (state, action) => {
+  const reportsArray = [];
+  Object.assign(reportsArray, state.oversightReports);
+  forEach(action.reportIds, (id) => {
+    remove(reportsArray, {
+      oversightReportId: id
+    });
+  });
+  const newState = {};
+  Object.assign(newState, state, { oversightReports: reportsArray, message: action.data });
+  return newState;
+};
+
+const updateReportSelect = (state, action) => {
+  const oversightReports = [];
+  Object.assign(oversightReports, state.oversightReports);
+  const index = findIndex(oversightReports, ['oversightReportId', action.data]);
+  if (index > -1) {
+    oversightReports[index].checked = !oversightReports[index].checked;
+  }
+  const newState = {};
+  Object.assign(newState, state, { oversightReports });
+  return newState;
+};
+
+const setCurrentOversightReport = (state, action) => {
+  let currentOversightReport = {};
+  currentOversightReport = action.data;
+  if (!currentOversightReport.operationsCovered) {
+    currentOversightReport.operationsCovered = undefined;
+  }
+  if (!currentOversightReport.leadOversightOff) {
+    currentOversightReport.leadOversightOff = undefined;
+  }
+  if (!currentOversightReport.implementationStatus) {
+    currentOversightReport.implementationStatus = undefined;
+  }
+
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport });
+  return newState;
+};
+
+const setTextField = (state, action) => {
+  const oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport[action.data.name] = action.data.value;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+const resetOversightform = (state) => {
+  let oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport = DEFAULT_STATE.currentOversightReport;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+const setOversightUnit = (state, action) => {
+  const oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport.oversightUnit = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+const setOversightType = (state, action) => {
+  const oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport.oversightType = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+const resetOsPostSucess = (state) => {
+  const newState = {};
+  Object.assign(newState, state, { osPostSucess: '' });
+  return newState;
+};
+
+const setOversightCoverage = (state, action) => {
+  const oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport.coverage = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+const setOverSightFormDate = (state, action) => {
+  const oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport[action.data.name] = action.data.value;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+const setOverseeingParties = (state, action) => {
+  const oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport.overseenParties = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+const setSituation = (state, action) => {
+  const oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport.situation = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+const setOperationsCovered = (state, action) => {
+  const oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport.operationsCovered = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+const setLeadOversightOfficers = (state, action) => {
+  const oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport.leadOversightOff = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+const setOversightImplStatus = (state, action) => {
+  const oversightReport = {};
+  Object.assign(oversightReport, state.currentOversightReport);
+  oversightReport.implementationStatus = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentOversightReport: oversightReport });
+  return newState;
+};
+
+// Recommendation Methods
+const setRecNumber = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.recNumber = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setRecFieldText = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport[action.data.name] = action.data.value;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setActionParties = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.actionParties = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setPrimaryRisk = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.primaryRisk = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setSecondaryRisk = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.secondaryRisk = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setRecTopic = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.topic = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setRecCriticality = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.criticality = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setAcceptance = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.acceptance = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setDeemedImpl = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.deemedImplemented = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setRecommFormDate = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport[action.data.name] = action.data.value;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setImplStatus = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.implementationStatus = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setMenaResponse = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  //recommReport.menaOldResponse = recommReport.menaOldResponse.push(action.data);
+  console.log(action.data, 'action.data');
+  const recommReportMenaOldResponse = recommReport.menaOldResponse;
+  console.log(recommReportMenaOldResponse, 'recommReportMenaOldResponse');
+  // recommReport.menaOldResponse = recommReport.menaOldResponse.push({ id: 3, value: 'Jay' });
+  //recommReport.menaOldResponse = [{ id: 1, value: 'shree' }, { id: 2, value: 'Ram' }, { id: 3, value: 'Ram1' }, { id: 4, value: 'Ram2' }];
+  recommReport.menaOldResponse = action.data.result;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setResponsibleStaff = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.respStaffUnit = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const setExtFactIndicator = (state, action) => {
+  const recommReport = {};
+  Object.assign(recommReport, state.currentRecommendation);
+  recommReport.extFactIndicator = action.data;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation: recommReport });
+  return newState;
+};
+
+const saveRecommendation = (state, action) => {
+  const recommReport = [];
+  Object.assign(recommReport, state.recommendations);
+  let currentRecommendation = {};
+  Object.assign(currentRecommendation, state.currentRecommendation);
+  currentRecommendation.recommendationId = action.data.result.id;
+  recommReport.push(currentRecommendation);
+  currentRecommendation = DEFAULT_STATE.currentRecommendation;
+  const newState = {};
+  Object.assign(newState, state,
+    {
+      recommendations: recommReport,
+      currentRecommendation,
+      message: action.data.message
+    });
+  return newState;
+};
+
+const updateRecommendation = (state, action) => {
+  const recommReport = [];
+  Object.assign(recommReport, state.recommendations);
+  const index = findIndex(recommReport, ['recommendationId', state.currentRecommendation.recommendationId]);
+  if (index > -1) {
+    recommReport[index] = state.currentRecommendation;
+  }
+  const newState = {};
+  Object.assign(newState, state, { recommendations: recommReport, recpostedsucess: action.data.message });
+  return newState;
+};
+
+const resetRecommArray = (state) => {
+  const newState = {};
+  Object.assign(newState, state, { recommendations: [] });
+  return newState;
+};
+
+const getRecommendations = (state, action) => {
+  const newState = {};
+  Object.assign(newState, state, { recommendations: action.data });
+  return newState;
+};
+
+const setCurrentRecommendation = (state, action) => {
+  let currentRecommendation = {};
+  Object.assign(currentRecommendation, state.currentRecommendation);
+  currentRecommendation = action.currentRecommendation;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation });
+  return newState;
+};
+
+const resetRecommendationForm = (state, action) => {
+  let currentRecommendation = {};
+  Object.assign(currentRecommendation, state.currentRecommendation);
+  currentRecommendation = DEFAULT_STATE.currentRecommendation;
+  currentRecommendation.oversightReportId = action.reportId;
+  const newState = {};
+  Object.assign(newState, state, { currentRecommendation });
+  return newState;
+};
+
+const deleteRecommendation = (state, action) => {
+  const recommendationArray = [];
+  Object.assign(recommendationArray, state.recommendations);
+  forEach(action.data, (id) => {
+    remove(recommendationArray, {
+      recommendationId: id
+    });
+  });
+  const newState = {};
+  Object.assign(newState, state, { recommendations: recommendationArray, message: action.message });
+  return newState;
+};
+
+const setErrorMessage = (state, action) => {
+  const newState = {};
+  Object.assign(newState, state, { message: action.message });
+  return newState;
+};
+
+const resetMessage = (state) => {
+  const newState = {};
+  Object.assign(newState, state, { message: '' });
+  return newState;
+};
+
+export default function reducer(state = DEFAULT_STATE, action) {
+  switch (action.type) {
+
+    case OversightReportType.RESET_GET_OVERSIGHT_LOADING:
+      return {
+        ...state,
+        getOversightReqLoading: true
+      };
+    case OversightReportType.GET_OVERSIGHT_REPORTS:
+      return setOverSightReports(state, action);
+
+    case OversightReportType.SET_OVERSIGHT_REPORT_ACTION:
+      return setOversightReportAction(state, action);
+
+    case OversightReportType.OS_REPORT_POST_SUCCESS:
+      return osReportPostSuccess(state, action);
+
+    case OversightReportType.OS_REPORT_UPDATE_SUCCESS:
+      return osReportUpdateSuccess(state, action);
+
+    case OversightReportType.OS_REPORT_DELETE_SUCCESS:
+      return osReportDelete(state, action);
+
+    case OversightReportType.UPDATE_OVERSIGHTREPORT_SELECT:
+      return updateReportSelect(state, action);
+
+    case OversightReportType.SET_CURRENT_OVERSIGHT_REPORT:
+      return setCurrentOversightReport(state, action);
+
+    case OversightReportType.SET_OVERSIGHT_TEXT_FIELD:
+      return setTextField(state, action);
+
+    case OversightReportType.RESET_OVERSIGHT_FORM:
+      return resetOversightform(state);
+
+    case OversightReportType.SET_OVERSIGHT_DATE_FIELD:
+      return setOverSightFormDate(state, action);
+
+    case OversightReportType.SET_OVERSIGHT_UNIT:
+      return setOversightUnit(state, action);
+
+    case OversightReportType.SET_OVERSIGHT_COVERAGE:
+      return setOversightCoverage(state, action);
+
+    case OversightReportType.SET_OVERSEEING_PARTIES:
+      return setOverseeingParties(state, action);
+
+    case OversightReportType.SET_SITUATION:
+      return setSituation(state, action);
+
+    case OversightReportType.SET_OPERATIONS_COVERED:
+      return setOperationsCovered(state, action);
+
+    case OversightReportType.SET_LEAD_OFFICERS:
+      return setLeadOversightOfficers(state, action);
+
+    case OversightReportType.SET_OVERSIGHT_IMPL_STATUS:
+      return setOversightImplStatus(state, action);
+
+    case OversightReportType.SET_OVERSITE_TYPE:
+      return setOversightType(state, action);
+
+    case OversightReportType.OS_REPORT_POST_RESET:
+      return resetOsPostSucess(state);
+
+    // Recommendation Reducer
+    case RecommendationType.SET_REC_NUMBER:
+      return setRecNumber(state, action);
+
+    case RecommendationType.SET_REC_FIELD_TEXT:
+      return setRecFieldText(state, action);
+
+    case RecommendationType.SET_ACTION_PARTIES:
+      return setActionParties(state, action);
+
+    case RecommendationType.SET_PRIMARY_RISK:
+      return setPrimaryRisk(state, action);
+
+    case RecommendationType.SET_SECONDARY_RISK:
+      return setSecondaryRisk(state, action);
+
+    case RecommendationType.SET_REC_TOPIC:
+      return setRecTopic(state, action);
+
+    case RecommendationType.SET_REC_CRITICALITY:
+      return setRecCriticality(state, action);
+
+    case RecommendationType.SET_ACCEPTANCE:
+      return setAcceptance(state, action);
+
+    case RecommendationType.SET_DEEMED_IMPL:
+      return setDeemedImpl(state, action);
+
+    case RecommendationType.SET_REC_DATE_FIELD:
+      return setRecommFormDate(state, action);
+
+    case RecommendationType.SET_IMPL_STATUS:
+      return setImplStatus(state, action);
+
+    case RecommendationType.SET_RESPONSIBLE_STAFF:
+      return setResponsibleStaff(state, action);
+
+    case RecommendationType.SET_EXT_FACT_INDICATOR:
+      return setExtFactIndicator(state, action);
+
+    case RecommendationType.ADD_RECOMMENDATION:
+      return saveRecommendation(state, action);
+
+    case RecommendationType.SET_RECOMMENDATION:
+      return setCurrentRecommendation(state, action);
+
+    case RecommendationType.UPDATE_RECOMMENDATION:
+      return updateRecommendation(state, action);
+
+    case RecommendationType.RESET_RECOMMENDATION_FORM:
+      return resetRecommendationForm(state, action);
+
+    case RecommendationType.RESET_RECOMM_ARRAY:
+      return resetRecommArray(state);
+
+    case RecommendationType.GET_RECOMMENDATIONS:
+      return getRecommendations(state, action);
+
+    case RecommendationType.DELETE_RECOMMENDATION:
+      return deleteRecommendation(state, action);
+
+    case OversightReportType.RESET_OVERSIGHT_MSG:
+      return resetMessage(state);
+
+    case RecommendationType.RECOMM_ERROR:
+      return setErrorMessage(state, action);
+
+    case RecommendationType.OVERSIGHT_ERROR:
+      return setErrorMessage(state, action);
+    case RecommendationType.SET_MENA_RESPONSE:
+      return setMenaResponse(state, action);
+
+    default:
+      return state;
+  }
+}
