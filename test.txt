@@ -1,0 +1,11 @@
+constructor(props) {
+    super(props);
+    this.state = {
+      showConfirmDialog: false
+    };
+    this.submitConfirm = this.submitConfirm.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.dispatch(getParticipants());
+	}
