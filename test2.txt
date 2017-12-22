@@ -1,3 +1,392 @@
+import axios from 'axios';
+import { OversightReportType, RecommendationType } from './ActionType';
+import config from '../config';
+
+const HEADER_CONFIG = {
+  headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' }
+};
+
+// let i = 10;
+// const OVERSIGHTREPORTS = [
+//   {
+//     oversightId: 1,
+//     oversightUnit: {
+//       id: 1,
+//       name: 'OIO'
+//     },
+//     controlNumber: 'AS/1222/PO',
+//     reportStage: 'draft',
+//     reportNumber: '87878/PO/PAL',
+//     reportIssueDate: '27/11/2017',
+//     oversightType: {
+//       id: 1,
+//       name: 'Audit'
+//     },
+//     title: 'Audit Iraq water',
+//     overseenParties: [
+//       {
+//         id: 1,
+//         name: 'ARE ABC',
+//         FullName: 'United Arab Emirates'
+//       },
+//       {
+//         id: 2,
+//         name: 'Iraq'
+//       }
+//     ],
+//     detailOverseenParties: 'test',
+//     situation: [
+//       {
+//         id: 1,
+//         name: 'ARE ABC',
+//         FullName: 'United Arab Emirates'
+//       },
+//       {
+//         id: 2,
+//         name: 'Iraq'
+//       }
+//     ],
+//     operationsCovered: [
+//       {
+//         id: 1,
+//         name: 'SampleText'
+//       }
+//     ],
+//     coverage: [
+//       {
+//         id: 1,
+//         code: 'OP',
+//         name: 'OperationBureau'
+//       },
+//       {
+//         id: 2,
+//         code: 'HQ',
+//         name: 'Headquarters Function Offices'
+//       }
+//     ],
+//     assignmentStartDate: '02/11/2017',
+//     assignmentEndDate: '02/11/2017',
+//     periosCoveredStart: '27/11/2017',
+//     periosCoveredEnd: '27/11/2017',
+//     leadOversightOff: [
+//       {
+//         id: 1,
+//         name: 'Sample Name'
+//       },
+//       {
+//         id: 2,
+//         name: 'Sample Name2'
+//       }
+//     ],
+//     responseDeadline: '27/11/2017',
+//     actualRespDate: '27/11/2017',
+//     implementationState: 'Open',
+//     recommendations: []
+//   },
+//   {
+//     oversightId: 2,
+//     oversightUnit: {
+//       id: 2,
+//       name: 'BOA'
+//     },
+//     controlNumber: 'BP/9855/PO',
+//     reportStage: 'draft',
+//     reportNumber: '7471/PO/PAL',
+//     reportIssueDate: '20/11/2017',
+//     oversightType: {
+//       id: 2,
+//       name: 'Evaluation'
+//     },
+//     title: 'Audit Iraq water',
+//     overseenParties: [
+//       {
+//         id: 1,
+//         name: 'ARE ABC',
+//         FullName: 'United Arab Emirates'
+//       }
+//     ],
+//     detailOverseenParties: 'test',
+//     situation: [
+//       {
+//         id: 1,
+//         name: 'ARE ABC',
+//         FullName: 'United Arab Emirates'
+//       }
+//     ],
+//     operationsCovered: [
+//       {
+//         id: 1,
+//         name: 'SampleText'
+//       }
+//     ],
+//     coverage: [
+//       {
+//         id: 1,
+//         code: 'OP',
+//         name: 'OperationBureau'
+//       },
+//       {
+//         id: 2,
+//         code: 'HQ',
+//         name: 'Headquarters Function Offices'
+//       }
+//     ],
+//     assignmentStartDate: '03/11/2017',
+//     assignmentEndDate: '03/11/2017',
+//     periosCoveredStart: '11/11/2017',
+//     periosCoveredEnd: '19/11/2017',
+//     leadOversightOff: [
+//       {
+//         id: 1,
+//         name: 'Sample Name'
+//       },
+//       {
+//         id: 2,
+//         name: 'Sample Name2'
+//       }
+//     ],
+//     responseDeadline: '27/11/2017',
+//     actualRespDate: '27/11/2017',
+//     implementationState: 'Open',
+//     recommendations: []
+//   }
+// ];
+
+export function resetOSReqLoading() {
+  return { type: OversightReportType.RESET_GET_OVERSIGHT_LOADING };
+}
+
+export function getOversightReports() {
+  return (dispatch) => {
+    axios
+      .get(`${config.BASE_URL}/rest/oversightreport`, HEADER_CONFIG)
+      .then(response => {
+        dispatch({
+          type: OversightReportType.GET_OVERSIGHT_REPORTS,
+          data: response.data.dbData
+        });
+      })
+      .catch(err => {
+        dispatch({ type: OversightReportType.OVERSIGHT_ERROR, message: err.response.data.message });
+      });
+  };
+}
+
+export function postOversightReport(oversightReport) {
+  return (dispatch) => {
+    axios
+      .post(`${config.BASE_URL}/rest/oversightReport`, oversightReport, HEADER_CONFIG)
+      .then(response => {
+        console.log(response.data);
+        dispatch({
+          type: OversightReportType.OS_REPORT_POST_SUCCESS,
+          data: response.data.dbData
+        });
+        // dispatch({
+        //   type: OversightReportType.OS_REPORT_POST_SUCCESS,
+        //   data: OVERSIGHTREPORTS
+        // });
+      })
+      .catch(err => {
+        dispatch({ type: OversightReportType.OVERSIGHT_ERROR, message: err.response.data.message });
+      });
+  };
+}
+
+export function updateOversightReport(oversightReport) {
+  return (dispatch) => {
+    axios
+      .put(`${config.BASE_URL}/rest/oversightReport`, oversightReport, HEADER_CONFIG)
+      .then(response => {
+        dispatch({
+          type: OversightReportType.OS_REPORT_UPDATE_SUCCESS,
+          data: response.data.dbData
+        });
+      })
+      .catch(err => {
+        dispatch({ type: OversightReportType.OVERSIGHT_ERROR, message: err.response.data.message });
+      });
+  };
+}
+
+export function deleteOversightReports(reportIds) {
+  return (dispatch) => {
+    axios
+      .post(`${config.BASE_URL}/rest/oversightReport/delete`, reportIds, HEADER_CONFIG)
+      .then(response => {
+        dispatch({
+          type: OversightReportType.OS_REPORT_DELETE_SUCCESS,
+          data: response.data.dbData,
+          reportIds
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: OversightReportType.OS_REPORT_DELETE_SUCCESS,
+          reportIds
+        });
+        dispatch({ type: OversightReportType.OVERSIGHT_ERROR, message: err.response.data.message });
+      });
+  };
+}
+
+export function deleteSingleReport(id) {
+  return (dispatch) => {
+    axios
+      .delete(`${config.BASE_URL}/rest/oversightReport`, { params: { id } }, HEADER_CONFIG)
+      .then(response => {
+        dispatch({
+          type: OversightReportType.OS_REPORT_DELETE_SUCCESS,
+          data: response.data.dbData,
+          reportIds: [id]
+        });
+      })
+      .catch(err => {
+        dispatch({ type: OversightReportType.OVERSIGHT_ERROR, message: err.response.data.message });
+      });
+  };
+}
+
+export function resetOversightform() {
+  return { type: OversightReportType.RESET_OVERSIGHT_FORM };
+}
+
+export function setOversightReportAction(data) {
+  return { type: OversightReportType.SET_OVERSIGHT_REPORT_ACTION, data };
+}
+
+export function resetOsPostSucess() {
+  return { type: OversightReportType.OS_REPORT_POST_RESET };
+}
+
+export function setCurrentOversightReport(data) {
+  return { type: OversightReportType.SET_CURRENT_OVERSIGHT_REPORT, data };
+}
+
+export function updateReportSelect(data) {
+  return { type: OversightReportType.UPDATE_OVERSIGHTREPORT_SELECT, data };
+}
+
+export function setControlsList(data) {
+  return { type: OversightReportType.SET_CONTROLS_LIST, data };
+}
+
+export function setOverseenPartiesList(data) {
+  return { type: OversightReportType.SET_OVERSEEN_PARTIES_LIST, data };
+}
+
+export function setCoverageList(data) {
+  return { type: OversightReportType.SET_COVERAGE_LIST, data };
+}
+
+export function setTextFiled(data) {
+  return { type: OversightReportType.SET_OVERSIGHT_TEXT_FIELD, data };
+}
+
+export function setOversightUnit(data) {
+  return { type: OversightReportType.SET_OVERSIGHT_UNIT, data };
+}
+
+export function setOversightType(data) {
+  return { type: OversightReportType.SET_OVERSITE_TYPE, data };
+}
+
+export function setOversightCoverage(data) {
+  return { type: OversightReportType.SET_OVERSIGHT_COVERAGE, data };
+}
+
+export function setOverseeingParties(data) {
+  return { type: OversightReportType.SET_OVERSEEING_PARTIES, data };
+}
+
+export function setSituation(data) {
+  return { type: OversightReportType.SET_SITUATION, data };
+}
+
+export function setOperationsCovered(data) {
+  return { type: OversightReportType.SET_OPERATIONS_COVERED, data };
+}
+
+export function setLeadOversightOfficers(data) {
+  return { type: OversightReportType.SET_LEAD_OFFICERS, data };
+}
+
+export function setOversightImplStatus(data) {
+  return { type: OversightReportType.SET_OVERSIGHT_IMPL_STATUS, data };
+}
+
+export function setOverSightFormDate(data) {
+  return { type: OversightReportType.SET_OVERSIGHT_DATE_FIELD, data };
+}
+
+// RecommendationForm Actions
+export function setRecNumber(data) {
+  return { type: RecommendationType.SET_REC_NUMBER, data };
+}
+
+export function setRecFieldText(data) {
+  return { type: RecommendationType.SET_REC_FIELD_TEXT, data };
+}
+
+export function setActionParties(data) {
+  return { type: RecommendationType.SET_ACTION_PARTIES, data };
+}
+
+export function setPrimaryRisk(data) {
+  return { type: RecommendationType.SET_PRIMARY_RISK, data };
+}
+
+export function setSecondaryRisk(data) {
+  return { type: RecommendationType.SET_SECONDARY_RISK, data };
+}
+
+export function setRecTopic(data) {
+  return { type: RecommendationType.SET_REC_TOPIC, data };
+}
+
+export function setRecCriticality(data) {
+  return { type: RecommendationType.SET_REC_CRITICALITY, data };
+}
+export function setAcceptance(data) {
+  return { type: RecommendationType.SET_ACCEPTANCE, data };
+}
+export function setDeemedImpl(data) {
+  return { type: RecommendationType.SET_DEEMED_IMPL, data };
+}
+
+export function setRecommFormDate(data) {
+  return { type: RecommendationType.SET_REC_DATE_FIELD, data };
+}
+
+export function setImplStatus(data) {
+  return { type: RecommendationType.SET_IMPL_STATUS, data };
+}
+
+export function setResponsibleStaff(data) {
+  return { type: RecommendationType.SET_RESPONSIBLE_STAFF, data };
+}
+
+export function setExtFactIndicator(data) {
+  return { type: RecommendationType.SET_EXT_FACT_INDICATOR, data };
+}
+
+export function addMenaResponse(recObject) {
+  return (dispatch) => {
+    axios
+      .post(`${config.BASE_URL}/rest/recommendation/addMenaResponse`, recObject, HEADER_CONFIG)
+      .then(response => {
+        console.log(response.data);
+        dispatch({
+          type: RecommendationType.SET_MENA_RESPONSE,
+          data: response.data.dbData
+        });
+      })
+      .catch(err => {
+        dispatch({ type: RecommendationType.RECOMM_ERROR, message: err.response.data.message });
+      });
+  };
+}
+
 export function getRecommendations(id) {
   return (dispatch) => {
     axios
@@ -14,3 +403,79 @@ export function getRecommendations(id) {
       });
   };
 }
+
+export function saveRecommendation(recObject) {
+  return (dispatch) => {
+    axios
+      .post(`${config.BASE_URL}/rest/recommendation`, recObject, HEADER_CONFIG)
+      .then(response => {
+        console.log(response.data);
+        dispatch({
+          type: RecommendationType.ADD_RECOMMENDATION,
+          data: response.data.dbData
+        });
+      })
+      .catch(err => {
+        dispatch({ type: RecommendationType.RECOMM_ERROR, message: err.response.data.message });
+      });
+  };
+}
+
+export function updateRecommendation(recObject) {
+  return (dispatch) => {
+    axios
+      .put(`${config.BASE_URL}/rest/recommendation`, recObject, HEADER_CONFIG)
+      .then(response => {
+        console.log(response.data);
+        dispatch({
+          type: RecommendationType.UPDATE_RECOMMENDATION,
+          data: response.data.dbData
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({
+          type: RecommendationType.UPDATE_RECOMMENDATION,
+          data: { message: 'Recommendation Updated successfully' }
+        });
+        // dispatch({ type: RecommendationType.RECOMM_ERROR, message: err });
+      });
+  };
+}
+
+export function deleteRecommendation(id) {
+  return (dispatch) => {
+    axios
+      .delete(`${config.BASE_URL}/rest/recommendation`,
+      { params: { id } }, HEADER_CONFIG)
+      .then(response => {
+        console.log(response);
+        dispatch({
+          type: RecommendationType.DELETE_RECOMMENDATION,
+          data: [id],
+          message: response.data.dbData
+        });
+      })
+      .catch(err => {
+        dispatch({ type: RecommendationType.RECOMM_ERROR, message: err.response.data.message });
+      });
+  };
+}
+
+
+export function setCurrentRecommendation(currentRecommendation) {
+  return { type: RecommendationType.SET_RECOMMENDATION, currentRecommendation };
+}
+
+export function resetRecommendationForm(reportId) {
+  return { type: RecommendationType.RESET_RECOMMENDATION_FORM, reportId };
+}
+
+export function resetRecommArray() {
+  return { type: RecommendationType.RESET_RECOMM_ARRAY };
+}
+
+export function resetOversightMessage() {
+  return { type: OversightReportType.RESET_OVERSIGHT_MSG };
+}
+
