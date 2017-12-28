@@ -30,3 +30,8 @@ export default function setAuthorizationToken(token) {
   }
 }
 
+
+
+
+import { map } from 'lodash';
+map(overSightObject.overseenParties, 'id');
