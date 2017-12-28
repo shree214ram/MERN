@@ -35,3 +35,5 @@ export default function setAuthorizationToken(token) {
 
 import { map } from 'lodash';
 map(overSightObject.overseenParties, 'id');
+
+map(this.props.ScheduleManager.selectedProductsList, o => _pick(o, ['productId', 'subProductId', 'excluded', 'comments']));
