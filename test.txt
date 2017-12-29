@@ -1,4 +1,6 @@
 http://mcbitsstech.dyndns.biz:8083/rest/userlogin
+rest/userRoleMenuPermission
+http://mcbitsstech.dyndns.biz:8083/rest/userRoleMenuPermission
 
 {
     "userName": "git.mcbitss@gmail.com",
