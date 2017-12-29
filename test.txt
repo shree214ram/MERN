@@ -1,26 +1,4 @@
-http://mcbitsstech.dyndns.biz:8083/rest/userlogin
-rest/userRoleMenuPermission
-http://mcbitsstech.dyndns.biz:8083/rest/userRoleMenuPermission
-http://mcbitsstech.dyndns.biz:8083/rest/recommendation/oversightreport/5092
 
-{
-    "userName": "git.mcbitss@gmail.com",
-    "password": "abc123"
-}
-
-Content-Type  application/json
-
-
-Accept:application/json, text/plain, */*
-Accept-Encoding:gzip, deflate, br
-Accept-Language:en-US,en;q=0.9
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEsImlhdCI6MTUxNDMzNzQ1Mn0.kosZJ_8h02bnFg3VeIfcDYJ2-OD68Zh3t3VZ26ndS6w
-Cache-Control:no-cache
-Connection:keep-alive
-Host:localhost:3000
-Origin:http://localhost:8080
-Referer:http://localhost:8080/
-User-Agent:Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36
 
 axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
