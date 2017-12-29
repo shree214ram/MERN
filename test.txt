@@ -1,6 +1,7 @@
 http://mcbitsstech.dyndns.biz:8083/rest/userlogin
 rest/userRoleMenuPermission
 http://mcbitsstech.dyndns.biz:8083/rest/userRoleMenuPermission
+http://mcbitsstech.dyndns.biz:8083/rest/recommendation/oversightreport/5092
 
 {
     "userName": "git.mcbitss@gmail.com",
