@@ -1,0 +1,25 @@
+
+ [33m[ ❌ ERROR ❌ ][39m Sat Jan 06 2018 18:06:18 , Endpoint: /rest/userRegister ,method: POST 
+ [31mSyntaxError: Unexpected token u in JSON at position 18
+    at JSON.parse (<anonymous>)
+    at parse (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/raw-body/index.js:224:16)
+    at done (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:105:13)
+    at IncomingMessage.emit (events.js:207:7)
+    at endReadableNT (_stream_readable.js:1059:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)[39m
+ [33m[ ❌ ERROR ❌ ][39m Sat Jan 06 2018 18:08:38 , Endpoint: /rest/userRegister ,method: POST 
+ [31mReferenceError: recordset is not defined
+    at exports.post (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/server/api/userRegister/userRegisterController.js:76:13)
+    at Layer.handle [as handle_request] (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/express/lib/router/layer.js:95:5)
+    at /home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/express/lib/router/index.js:174:3)
+    at router (/home/pc/Desktop/deskop/MCBITSS/poonam_practice/MERN/MERN_API/node_modules/express/lib/router/index.js:47:12)[39m
