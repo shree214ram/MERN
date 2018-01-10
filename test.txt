@@ -1,4 +1,15 @@
-
+const listItems = [];
+        for (let i = 0; i < LogUserMenu.length; i += 1) {
+          const link = LogUserMenu[i];
+          const Type = SvgComponents[link.svg];
+          if (link.subMenu.length === 0) {
+            listItems.push(<li className="sidebar-menu-block">
+              <Link className={`sidebar-item-main ${(pathArr[0] === link.slug ? 'active' : '')}`} to={link.slug}>
+                <div className="sidebar-item-icon"> <Type /> </div>
+                <div className="sidebar-item-text"> {link.name} </div>
+              </Link> </li>);
+              
+              
 
 axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
