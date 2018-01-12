@@ -5,6 +5,10 @@ http://jsfiddle.net/jhudson8/dahdx6eu/
 http://glittershark.github.io/reactable/
 http://blog.markusproject.org/?p=5860
 https://github.com/glittershark/reactable
+https://github.com/sematext/sematable
+
+https://www.w3schools.com/howto/howto_js_filter_table.asp
+https://www.w3schools.com/howto/howto_js_sort_table.asp
 
 
 const listItems = [];
