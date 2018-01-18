@@ -1,3 +1,6 @@
+menuSubmenuList.userMenu[indexMenu].subMenu[indexSubMenu].checked = !menuSubmenuList.userMenu[indexMenu].subMenu[indexSubMenu].checked;
+
+
 https://code.tutsplus.com/tutorials/working-with-tables-in-react-part-one--cms-29682
 https://www.npmjs.com/package/react-sort-search-table
 http://allenfang.github.io/react-bootstrap-table/example.html
