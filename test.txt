@@ -1,3 +1,8 @@
+const newState = {};
+  Object.assign(newState, state, { menuSubmenuList: action.data });
+  return newState;
+
+
 const menuSubmenuList = [];
   Object.assign(menuSubmenuList, state.menuSubmenuList);
   const newState = {};
