@@ -1,3 +1,21 @@
+const menuSubmenuList = [];
+  Object.assign(menuSubmenuList, state.menuSubmenuList);
+  const newState = {};
+  const newCurrentEmployee = [];
+  const indexMenu = findIndex(menuSubmenuList.userMenu, ['id', action.menuId]);
+  if (indexMenu > -1) {
+    const indexSubMenu = findIndex(menuSubmenuList.userMenu[indexMenu].subMenu, ['id', action.subMenuId]);
+    if (indexSubMenu > -1) {
+      menuSubmenuList.userMenu[indexMenu].subMenu[indexSubMenu].checked = !menuSubmenuList.userMenu[indexMenu].subMenu[indexSubMenu].checked;
+      // Checked Unchecked Filter
+      if (menuSubmenuList.userMenu[indexMenu].subMenu[indexSubMenu].checked) {
+        state.isChecked.push({ objectKey: action.key, objectValue: action.value });
+      } else {
+        remove(state.isChecked, { objectKey: action.key, objectValue: action.value });
+      }
+    }
+  }
+
 menuSubmenuList.userMenu[indexMenu].subMenu[indexSubMenu].checked = !menuSubmenuList.userMenu[indexMenu].subMenu[indexSubMenu].checked;
 
 
