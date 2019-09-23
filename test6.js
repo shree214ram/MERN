@@ -7,13 +7,14 @@ class ParentComponanat extends React.Component {
         //Response 
         //SET STATE
     }
-    commonFunction = (state, sort = 0) => {
+
+    
+    commonFunction = (state, sort = 0, searchCondition = 0, searchFilterCondition = 0) => {
         // On Pagination Page change 
-        // WE will have to convert this function like  
-        if (sort === 0) //*****meanse user not clicked any sorting only pagination*****
-        {
-            //Pass default "order by" first AutoIncrementColumn Like "Id" and "LIMIT" state.skip, state.pageLimit
-        } else if (sort !== 0) {  //*****meanse user  clicked any sorting with pagination*****
+        // WE will have to convert this function like 
+        const sorting = false; 
+        const searching = false; 
+        if (sort !== 0) {  //*****meanse user  clicked any sorting with pagination*****
 
             // FOR Example my 'sort' coming like that 
             /*
@@ -43,9 +44,88 @@ class ParentComponanat extends React.Component {
             "columnName": "Slaray"
             }]
             */
-            //Pass  "order by"  "users selected column('convert sort in format what Backend wants ====>' at place of that pass 'SortingParamsList')" and "LIMIT" state.skip, state.pageLimit
-
+            sorting = true;  // IF SORTING SHOULD REQUIRED THEN 'sorting = true'
         }
+
+        if (searchCondition !== 0 && searchFilterCondition !== 0) {  //*****meanse user  clicked any sorting with pagination*****
+
+            // FOR Example my 'searchFilterCondition' coming like that 
+            /*
+            searchFilterCondition: [{
+                Condition: 'Is Equal To',
+                Field: ProductName,
+                SearchVale: 'Hay'
+            }, {
+                Condition: 'Is Equal To',
+                Field: FirstOrderedOn,
+                SearchVale: 'Shree'
+            },
+            {  
+                Condition: 'Is Equal To',
+                Field: UnitPrice,
+                SearchVale: 'Ram'
+            }]
+            */
+
+            //THAN CONVERT INTO BACKEND DEVELOPER REQUIRED FORM 
+            const SearchingParamsList = [];
+            (searchFilterCondition || []).map(obj => {
+                const searchObject = {
+                    "columnSearchInputValue": obj.SearchVale,
+                    "columnName": obj.Field,
+                    "Condition": obj.Condition
+                }
+                SearchingParamsList.push(searchObject);
+            })
+
+            /* UPPER CODE WILL PRODUCE DYNAMIC SearchingParamsList ARRAY like that :-
+            SearchingParamsList= [{
+                Condition: 'Is Equal To',
+                Field: ProductName,
+                columnSearchInputValue: 'Hay'
+            }, {
+                Condition: 'Is Equal To',
+                Field: FirstOrderedOn,
+                columnSearchInputValue: 'Shree'
+            },
+            {  
+                Condition: 'Is Equal To',
+                Field: UnitPrice,
+                columnSearchInputValue: 'Ram'
+            }]
+            */
+           searching = true;  // IF SEARCHING SHOULD REQUIRED THEN 'searching = true'
+        }
+
+        // ************** search with sort with pagination *************//
+        if(searching === true && sorting === true){
+        // CALL API and pass SortingParamsList && SearchingParamsList
+            /* PASS PARAMETER 
+            "order by"  "users selected column('SortingParamsList')" 
+            "like"  "users selected column('SearchingParamsList')" 
+            "LIMIT" state.skip, state.pageLimit */
+        }
+        // ************** ONLY search with pagination *************//
+
+        else if(searching === true && sorting === false){
+            // CALL API and pass SearchingParamsList 
+            /* PASS PARAMETER 
+            "like"  "users selected column('SearchingParamsList')" 
+            "LIMIT" state.skip, state.pageLimit */
+            }
+        // ************** ONLY sort with pagination *************//
+
+        else if(searching === false && sorting === true){
+            // CALL API and pass SortingParamsList 
+            /* PASS PARAMETER 
+            "order by"  "users selected column('SortingParamsList')" 
+            "LIMIT" state.skip, state.pageLimit */
+            }
+        //*****meanse user not clicked any sorting and sorting only pagination*****
+        else 
+            {
+                //Pass default "order by" first AutoIncrementColumn Like "Id" and "LIMIT" state.skip, state.pageLimit
+            }  
         //Response 
         //SET STATE
     }
@@ -53,6 +133,13 @@ class ParentComponanat extends React.Component {
         //CAL API AGAI
         // ****COVERT ******//
         this.commonFunction(state, event.sort)
+    }
+
+    //********FILTERATION******//
+    onSearchChange = (searchCondition, searchFilterCondition, state) => {
+        //CAL API AGAI
+        // ****API WITH SEARCH AND SORT TOGATHERE  ******//
+        this.commonFunction(state,state.sortStae.sort, searchCondition, searchFilterCondition )
     }
 
     render() {
@@ -72,6 +159,7 @@ class ParentComponanat extends React.Component {
                             { field: "ProductName", operator: "contains", value: "Chef" } //****YAHA PAR TUMHARE COLUMN KE NAME DENA****/
                         ]
                     }}
+                    onSearch={this.onSearchChange}
                 /></div>)
     }
 }
@@ -95,7 +183,7 @@ class GridComponanat extends React.Component {
         // this.props.onSort(event.sort, this.state) //**** We will not call API call back here ****
         //****** we will just save in state *****
 
-        FIST CASE :- 
+        //*****FIST CASE :- *****//
             //HAME CHECK KARNA HOGA MULTIPLA COLUMN PAR CLICK KARNE PAR event.sort me below records merge ho rahe he ya nahi like :- 
             /*sort: [{
                 Dir: asc,
@@ -110,8 +198,7 @@ class GridComponanat extends React.Component {
 
             this.setSate({ sortStae: event.sort })
 
-
-        SECOND CASE :- 
+        //*****SECOND CASE :- *****//
             let mergedSort = this.state.sortStae;
             //AGAR MERGE NAHI HO RAHA HE TO HUMKO FIR KUCH NAYA ARRAY BANANA HOGA 
             // 1. If Dir(ORDERBY !== 'UNSORT'){
@@ -140,17 +227,17 @@ class GridComponanat extends React.Component {
     //********FILTERATION******//
     
     searchConditionChange = (e) => {
-        
-        this.props.onSort(this.state.searchCondition, e.target.value) // pass 'this.state.sortStae' AT PLace of event.sort 
+        // SET STATE AT CLICK OF SELCTION OF DROPDOWN 
+        this.setSate({ searchCondition: e.target.value })
     }
     buttonClickSearch = () => {
         // pass 'this.state.searchCondition' Like 'AND OR ANY'   AND this.state.searchFilterCondition like '@SP FILTER ARRAY EXAPMLE '
-        this.props.onSearch(this.state.searchCondition, this.state.searchFilterCondition) 
+        this.props.onSearch(this.state.searchCondition, this.state.searchFilterCondition, this.state) 
     }
     filterChange = (event) => {
         //****** we will just save in state *****
         
-        FIST CASE :- 
+        //*****FIST CASE :- *****//
             //HAME CHECK KARNA HOGA MULTIPLA COLUMN PAR CHANGE KARNE PAR event.filter me below records merge ho rahe he ya nahi like :- 
             //@SP FILTER ARRAY EXAPMLE 
             /*filter: [{
@@ -171,7 +258,7 @@ class GridComponanat extends React.Component {
             this.setSate({ searchFilterCondition: event.filter })
 
             
-        SECOND CASE :- 
+        //*****SECOND CASE :- *****//
             let mergedSort = this.state.searchFilterCondition;
             //AGAR MERGE NAHI HO RAHA HE TO HUMKO FIR KUCH NAYA ARRAY BANANA HOGA 
             // 1. If Dir(ORDERBY !== 'CLEAR'){  // FIRST HAMKO CHECK KARNA HOGA KI USER NE CLEAR BUTTON PAR TO CLICK TO NAHI KIYA
