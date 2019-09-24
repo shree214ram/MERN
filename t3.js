@@ -5,6 +5,13 @@ class App extends React.Component {
         
     };
 
+    clearSort = () => {
+      console.log(this.state.sort,'this.state.sortBEFORE')
+        this.setState({
+            sort: []
+        });
+    }
+
     sortChange = (event) => {
       console.log(this.state.sort,'this.state.sortBEFORE')
         this.setState({
@@ -15,5 +22,10 @@ class App extends React.Component {
 
     
 
-    render() {
-      console.log(this.state.sort,'this.state.sort')
+      
+        
+        render() {
+            console.log(this.state.sort,'this.state.sort')
+        return (
+            <div>
+                <button value="Clear Sort" onClick={this.clearSort} /> //****SORT CLEAR BUTTON*****/
