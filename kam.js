@@ -22,9 +22,8 @@ class ParentComponanat extends React.Component {
             "pageSize": pagination.take,
             "webapicachekey": "string",
             "pageSizeList": [],
-            "sortingParamlist": null,
-            "filterParamList": null,
-            searchTypeOption: "string"
+            "sortingParamlist": null
+            
         }
         if (sort !== 0) {  //*****meanse user  clicked any sorting with pagination*****
 
