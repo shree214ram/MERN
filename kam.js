@@ -129,6 +129,7 @@ class ParentComponanat extends React.Component {
             "LIMIT" state.skip, state.pageLimit */
             value.filterParamList = SearchingParamsList;
             value.searchTypeOption = searchFilterCondition;
+            valu.webApiSearchCacheKey: response.webApiSearchCacheKey //kamini 
             }
         // ************** ONLY sort with pagination *************//
 
@@ -147,6 +148,7 @@ class ParentComponanat extends React.Component {
         // JQUERY POST API 
         //Response 
         //SET STATE
+        if randonSearchApi me response me webapisearchcachekey ayegi tb setstate krkek value me pass katrna hai. 
     }
     onSortChange = (event, state) => {
         //CAL API AGAI
