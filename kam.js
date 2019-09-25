@@ -8,11 +8,24 @@ class ParentComponanat extends React.Component {
     }
 
     
-    commonFunction = (state, sort = 0, searchCondition = 0, searchFilterCondition = 0) => {
+    commonFunction = (event, state) => {
         // On Pagination Page change 
         // WE will have to convert this function like 
+        const sort = state.sort;
+        const search = state.search;
+        const pagination = state.pagination;
         const sorting = false; 
         const searching = false; 
+        const pageNumber = ((pagination.skip/pagination.take)+1);
+        const value = {
+          "pageNumber": pageNumber,
+            "pageSize": pagination.take,
+            "webapicachekey": "string",
+            "pageSizeList": [],
+            "sortingParamlist": null,
+            "filterParamList": null,
+            searchTypeOption: "string"
+        }
         if (sort !== 0) {  //*****meanse user  clicked any sorting with pagination*****
 
             // FOR Example my 'sort' coming like that 
@@ -30,6 +43,7 @@ class ParentComponanat extends React.Component {
                 }
                 SortingParamsList.push(sortObject);
             })
+            
 
             /* UPPER CODE WILL PRODUCE DYNAMIC SortingParamsList ARRAY like that :-
             SortingParamsList[{
@@ -103,6 +117,9 @@ class ParentComponanat extends React.Component {
             "order by"  "users selected column('SortingParamsList')" 
             "like"  "users selected column('SearchingParamsList')" 
             "LIMIT" state.skip, state.pageLimit */
+            value.sortingParamlist = SortingParamsList;
+            value.filterParamList = SearchingParamsList;
+            value.searchTypeOption = searchFilterCondition;
         }
         // ************** ONLY search with pagination *************//
 
@@ -111,6 +128,8 @@ class ParentComponanat extends React.Component {
             /* PASS PARAMETER 
             "like"  "users selected column('SearchingParamsList')" 
             "LIMIT" state.skip, state.pageLimit */
+            value.filterParamList = SearchingParamsList;
+            value.searchTypeOption = searchFilterCondition;
             }
         // ************** ONLY sort with pagination *************//
 
@@ -119,12 +138,14 @@ class ParentComponanat extends React.Component {
             /* PASS PARAMETER 
             "order by"  "users selected column('SortingParamsList')" 
             "LIMIT" state.skip, state.pageLimit */
+             value.sortingParamlist = SortingParamsList;
             }
         //*****meanse user not clicked any sorting and sorting only pagination*****
         else 
             {
                 //Pass default "order by" first AutoIncrementColumn Like "Id" and "LIMIT" state.skip, state.pageLimit
             }  
+        // JQUERY POST API 
         //Response 
         //SET STATE
     }
@@ -171,7 +192,9 @@ class GridComponanat extends React.Component {
             sortStae: [],// please check it Array OR Object required 
             //********FILTERATION******//
             searchCondition:null,
-            searchFilterCondition: []
+            searchFilterCondition: [],
+            //********PAGINATION******//
+            pagination:{skip: 0, take: 10 },
         }
     }
 
@@ -283,6 +306,14 @@ class GridComponanat extends React.Component {
                 }
                 //AGAIN REDECLAR THE STATE MEANS OVERIGHT THE STSTE AGAIN 
                 this.setSate({ searchFilterCondition: mergedSort })
+    }
+    
+    //********PAGINATION******//
+    
+    onPageChange = (event) => {
+        // SET STATE AT CLICK OF SELCTION OF PAGINATION BUTTONS << 1 2 3 >> 
+        this.setSate({ pagination: event })
+        this.props.onPageChange(event);
     }
     render() {
         return (
