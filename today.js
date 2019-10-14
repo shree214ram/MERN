@@ -69,35 +69,7 @@ class SearchComponanat extends React.Component {
             <div>
                 
                 <button value="RESET" onClick={this.resetButtonClick} /> //****RESET BUTTON*****/
-                
-                <Grid
-                    style={{ height: '300px' }}
-                    data={this.props.data}
-                    sortable={{
-                        allowUnsort: this.props.allowUnsort,
-                        mode: this.props.multiple ? 'multiple' : 'single'
-                    }}
-                    sort={this.props.sort}
-                    onSortChange={this.sortChange}
-
-                    //**FILTERATION****//
-                    filterable
-                    filter={this.props.filter}
-                    onFilterChange={(e) => {
-                        this.setState({
-                            filter: e.filter
-                        });
-                    }}
-                    >
-                    {/* //****YAHA PAR TUMHARE COLUMN KE NAME DENA**** */}
-                    <Column field="ProductID" title="ID" filterable={false} 
-                    /* ****JIS COLUMN PAR FILTER NAHI CHAHIYE filterable={false}**** */
-                    width="60px" />
-                    <Column field="ProductName" title="Product Name" />
-                    <Column field="FirstOrderedOn" width="240px" filter="date" format="{0:d}" />
-                    <Column field="UnitPrice" width="180px" filter="numeric" format="{0:c}" />
-                    <Column field="Discontinued" width="190px" filter="boolean" />
-                </Grid></div>)
+                </div>)
     }
 }
 
