@@ -21,6 +21,9 @@ class GridComponanat extends React.Component {
                 this.setState({ showSortButton: fasle });
             }
         }
+        else {
+                this.setState({ showSortButton: fasle });
+            }
     }
 
     sortChange = (event) => {
