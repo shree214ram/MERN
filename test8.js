@@ -146,6 +146,14 @@ class ParentComponanat extends React.Component {
                 //Pass default "order by" first AutoIncrementColumn Like "Id" and "LIMIT" state.skip, state.pageLimit
             }  
         // JQUERY POST API 
+        if(value.sortingParamlist !== null){ // Matalab Sort + Pagination
+            Call Load Page API use Value object
+        } else if(value.sortingParamlist === null && value.filterParamList !== null){ // Matalab Search + Pagination
+            Call Research Page API use Value1 object
+        } else { // Matalab Search hone ke bard + Pagination
+            Call Load Page API use Value object and pass webApiSearchCacheKey
+        }
+        
         //Response 
         //SET STATE
         if randonSearchApi me response me webapisearchcachekey ayegi tb setstate krkek value me pass katrna hai. 
