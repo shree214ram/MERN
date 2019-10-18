@@ -146,9 +146,27 @@ class ParentComponanat extends React.Component {
                 //Pass default "order by" first AutoIncrementColumn Like "Id" and "LIMIT" state.skip, state.pageLimit
             }  
         // JQUERY POST API 
-        if(value.sortingParamlist !== null){ // Matalab Sort + Pagination
+//         if(value.sortingParamlist !== null){ // Matalab Sort + Pagination
+//             Call Load Page API use Value object
+//         } else if(value.sortingParamlist === null && value.filterParamList !== null){ // Matalab Search + Pagination
+//             Call Research Page API use Value1 object
+//         } else { // Matalab Search hone ke bard + Pagination
+//             Call Load Page API use Value object and pass webApiSearchCacheKey
+//         }
+        
+        
+        
+        if(
+            (value.sortingParamlist && value.sortingParamlist !== null) && (value.filterParamList && value.filterParamList !== null)
+          ){ // Matalab SEARCH + Sort + Pagination
+            Call Load Page API use Value object (MUJHE NAHI PATA SEARCH + SOERT PAR KONSI API HOGI THINK YOUR SELF)
+        } else if(
+            (value.sortingParamlist && value.sortingParamlist !== null) && (!value.filterParamList)
+          ){ // Matalab Sort + Pagination
             Call Load Page API use Value object
-        } else if(value.sortingParamlist === null && value.filterParamList !== null){ // Matalab Search + Pagination
+        } else if(
+            value.filterParamList && value.filterParamList !== null) && (!value.sortingParamlist)
+        ){ // Matalab Search + Pagination
             Call Research Page API use Value1 object
         } else { // Matalab Search hone ke bard + Pagination
             Call Load Page API use Value object and pass webApiSearchCacheKey
