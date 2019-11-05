@@ -56,7 +56,18 @@ class GridComponanat extends React.Component {
             ) {
                 //************* 'this.state.searchCondition' Like 'AND OR ANY ' *************//
                 if (
-                    this.props.searchState && (this.props.searchState !== nextProps.searchState && nextProps.searchState.length > 1 && this.state.searchCondition && this.state.searchCondition != '')
+                    //OLD CODE
+                    // this.props.searchState && (this.props.searchState !== nextProps.searchState && nextProps.searchState.length > 1 && this.state.searchCondition && this.state.searchCondition != '')
+                    
+                    //NEW CODE
+                    this.props.searchState && 
+
+                    //Check This if it is working then remove Second (line  no 68)
+                    (this.props.searchState !== nextProps.searchState || this.props.searchCondition !== nextProps.searchCondition ) && 
+                    //Check This if it is working then remove First (line  no 66)
+                    !(this.props.searchState === nextProps.searchState || this.props.searchCondition === nextProps.searchCondition ) && 
+                    nextProps.searchState.length > 1 && 
+                    nextProps.searchCondition && nextProps.searchCondition != ''
                 ) {
                     this.setState({ showSearchButton: true });
                 } else if (
