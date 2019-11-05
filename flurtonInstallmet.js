@@ -59,6 +59,10 @@ class GridComponanat extends React.Component {
                     this.props.searchState && (this.props.searchState !== nextProps.searchState && nextProps.searchState.length > 1 && this.state.searchCondition && this.state.searchCondition != '')
                 ) {
                     this.setState({ showSearchButton: true });
+                } else if (
+                    this.props.searchState && (this.props.searchState !== nextProps.searchState && nextProps.searchState.length == 1 )
+                ) {
+                    this.setState({ showSearchButton: true });
                 } else {
                     this.setState({ showSortButton: fasle, showSearchButton: fasle });
                 }
