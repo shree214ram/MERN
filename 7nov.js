@@ -13,6 +13,8 @@ class ParentComponanat extends React.Component {
     render() {
         return (
             <div>
+            {
+                this.state.defaultLoadAAPIResponse.sortedKesyAray> 0 &&
                 <GridComponanat
                     data={APIRESPONSEDATA} //*************************TO SHOW SELECTED SORT DEFAULT *****************/
                     allowUnsort={true}
@@ -29,7 +31,11 @@ class ParentComponanat extends React.Component {
                         ]
                     }}
                     onSearch={this.onSearchChange}
-                /></div>)
+                />
+                
+            }
+                
+                </div>)
     }
 }
 
