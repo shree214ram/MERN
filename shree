@@ -1,0 +1,48 @@
+function datasource () {
+const page;
+const sortmodel;
+const filtermodel;
+
+
+if(pageSize > 1 && sortModel > 0){
+  DONO
+  callback(p[Updated number], so[Bhara hua]);
+}
+
+else if(pageSize > 1 ){
+// Only Pagination kiya
+  
+  callback(p[Updated number], so[Khali]);
+  
+}
+else if(sortModel > 0){
+// DONO me se koi ek bhi hua to kam chal jayega 
+  callback(p[1, default page], so[Bhara hua]);
+}
+else {
+     simple render;
+}
+
+
+}
+
+1. on load simple  (Normal Onload API )
+2. noramal dtaa + seach (Filter API , chache key milegi )
+3. normal dta + Sort (Load page   API )
+4. normal dta + pagination (Load page   API )
+3. Seached data + Pagination (Load page   API + Cheche key )
+4. Seached Data + Sort (Load page   API + Cheche key )
+
+
+
+
+
+
+
+
+
+
+else if(pageSize > 1 || sortModel > 0){
+// DONO me se koi ek bhi hua to kam chal jayega 
+  callback(p, so);
+}
