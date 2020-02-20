@@ -3,22 +3,15 @@ const page;
 const sortmodel;
 const filtermodel;
 
-
-if(pageSize > 1 && sortModel > 0){
-  DONO
-  callback(p[Updated number], so[Bhara hua]);
+if(filtermodel  ){
+  dusri API(filtermodel, so[Bhara hua]);
 }
 
-else if(pageSize > 1 ){
-// Only Pagination kiya
-  
-  callback(p[Updated number], so[Khali]);
-  
-}
-else if(sortModel > 0){
+else if(pageSize > 1 || sortModel > 0){
 // DONO me se koi ek bhi hua to kam chal jayega 
-  callback(p[1, default page], so[Bhara hua]);
+  callback(p, so);
 }
+
 else {
      simple render;
 }
@@ -37,12 +30,17 @@ else {
 
 
 
-
-
-
-
-
-else if(pageSize > 1 || sortModel > 0){
-// DONO me se koi ek bhi hua to kam chal jayega 
-  callback(p, so);
+else if(pageSize > 1 ){
+// Only Pagination kiya
+  
+  callback(p[Updated number], so[Khali]);
+  
 }
+else if(sortModel > 0){
+// DONO me se koi ek bhi hua to kam chal jayega 
+  callback(p[1, default page], so[Bhara hua]);
+}
+
+
+
+
