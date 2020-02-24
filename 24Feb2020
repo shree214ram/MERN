@@ -1,0 +1,21 @@
+var myInputObject = {
+  key1 : {
+    k1 : 2,
+    k2 : 3
+  },
+  key2 : {
+    k1 : 2,
+    k2 : 3
+  }
+}
+var newArray = []
+for(key in myInputObject){
+  // console.log('key',key)
+  var newObject = {};
+  newObject.name = key;
+  newObject.ParentName = myInputObject[key].k1;
+  newObject.ParentSubName = myInputObject[key].k2;
+  newArray.push(newObject)
+}
+
+console.log(newArray);
