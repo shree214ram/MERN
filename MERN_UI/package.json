@@ -31,7 +31,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "classnames": "^2.2.5",
     "guid": "0.0.12",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "link": "^0.1.5",
     "lodash": "^4.17.4",
     "material-components-web": "^0.25.0",
