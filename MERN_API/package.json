@@ -71,7 +71,7 @@
     "resolve-url-loader": "^2.0.2",
     "rimraf": "^2.6.1",
     "sinon": "^1.17.5",
-    "standard-version": "^4.2.0",
+    "standard-version": "^8.0.1",
     "supertest": "^2.0.0",
     "supertest-as-promised": "^4.0.0",
     "webpack": "^2.2.1",
