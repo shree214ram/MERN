@@ -1,0 +1,52 @@
+<script>
+    const myArray = [
+        { mileStoneStatus: "open", objective: "ABC" },
+        { mileStoneStatus: "open", objective: "ABC" },
+        { mileStoneStatus: "open", objective: "ABC" },
+        { mileStoneStatus: "open", objective: "ABC" },
+
+        { mileStoneStatus: "close", objective: "DEF" },
+        { mileStoneStatus: "close", objective: "DEF" },
+        { mileStoneStatus: "close", objective: "DEF" },
+        { mileStoneStatus: "close", objective: "DEF" },
+
+        { mileStoneStatus: "open", objective: "ABC" },
+        { mileStoneStatus: "open", objective: "ABC" },
+        { mileStoneStatus: "open", objective: "ABC" },
+        { mileStoneStatus: "open", objective: "ABC" },
+        { mileStoneStatus: "open", objective: "ABC" },
+        { mileStoneStatus: "open", objective: "ABC" },
+        { mileStoneStatus: "open", objective: "ABC" },
+
+        { mileStoneStatus: "close", objective: "DEF" },
+        { mileStoneStatus: "close", objective: "DEF" },
+        { mileStoneStatus: "close", objective: "DEF" },
+        { mileStoneStatus: "close", objective: "DEF" },
+        { mileStoneStatus: "close", objective: "DEF" },
+        { mileStoneStatus: "close", objective: "DEF" },
+        { mileStoneStatus: "close", objective: "DEF" },
+    ]
+    const newArray = myArray
+    const newUpdatedArray = []
+    const key = 'mileStoneStatus';
+    let oldStatus = newArray[0][key];
+    newArray.forEach((object, index) => {
+        // console.log(object, 'object')
+        // console.log(index, 'index')
+        // console.log(oldStatus, 'oldStatus')
+        const newObj = {}
+        for (let innerKay in object) {
+            if (innerKay === key && (object[key] !== oldStatus || index === 0)) {
+                newObj[innerKay] = object[innerKay];
+                oldStatus = object[innerKay]
+            } else if (innerKay !== key) {
+                newObj[innerKay] = object[innerKay];
+            }
+        }
+
+        // console.log(newObj, 'newObj}}}}}')
+        newUpdatedArray.push(newObj)
+        return true
+    })
+    console.log(newUpdatedArray, 'newUpdatedArray')
+</script>

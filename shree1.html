@@ -1,0 +1,63 @@
+[ { mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020" }, </br>{ mileStoneStatus: "open", objective: "ABC",
+mileStoneDate: "12Jan2020" }, </br>{ mileStoneStatus: "open", objective: "BCD", mileStoneDate: "12Jan2020" }, </br>{ mileStoneStatus:
+"open", objective: "BCD", mileStoneDate: "12Jan2020" }, </br>{ mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021"
+}, </br>{ mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" }, </br>{ mileStoneStatus: "close", objective: "DEF",
+mileStoneDate: "23Feb2021" }, </br>{ mileStoneStatus: "close", objective: "BCD", mileStoneDate: "23Feb2021" }, </br>{ mileStoneStatus:
+"open", objective: "ABC", mileStoneDate: "12Jan2020" }, </br>{ mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020"
+}, </br>{ mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020" }, </br>{ mileStoneStatus: "open", objective: "ABC",
+mileStoneDate: "12Jan2020" }, </br>{ mileStoneStatus: "open", objective: "BCD", mileStoneDate: "12Jan2020" }, </br>{ mileStoneStatus:
+"open", objective: "BCD", mileStoneDate: "12Jan2020" }, </br>{ mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020"
+}, </br>{ mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" }, </br>{ mileStoneStatus: "close", objective: "DEF",
+mileStoneDate: "23Feb2021" }, </br>{ mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" }, </br>{ mileStoneStatus:
+"close", objective: "DEF", mileStoneDate: "23Feb2021" }, </br>{ mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021"
+}, </br>{ mileStoneStatus: "close", objective: "BCD", mileStoneDate: "23Feb2021" }, </br>{ mileStoneStatus: "close", objective: "DEF",
+mileStoneDate: "23Feb2021" }, ]
+<script>
+    const myArray = [
+        { mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020" },
+        { mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020" },
+        { mileStoneStatus: "open", objective: "BCD", mileStoneDate: "12Jan2020" },
+        { mileStoneStatus: "open", objective: "BCD", mileStoneDate: "12Jan2020" },
+
+        { mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" },
+        { mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" },
+        { mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" },
+        { mileStoneStatus: "close", objective: "BCD", mileStoneDate: "23Feb2021" },
+
+        { mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020" },
+        { mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020" },
+        { mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020" },
+        { mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020" },
+        { mileStoneStatus: "open", objective: "BCD", mileStoneDate: "12Jan2020" },
+        { mileStoneStatus: "open", objective: "BCD", mileStoneDate: "12Jan2020" },
+        { mileStoneStatus: "open", objective: "ABC", mileStoneDate: "12Jan2020" },
+
+        { mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" },
+        { mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" },
+        { mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" },
+        { mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" },
+        { mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" },
+        { mileStoneStatus: "close", objective: "BCD", mileStoneDate: "23Feb2021" },
+        { mileStoneStatus: "close", objective: "DEF", mileStoneDate: "23Feb2021" },
+    ]
+    const newArray = myArray
+    const newUpdatedArray = []
+    const key = 'mileStoneStatus';
+    const keyArray = ['mileStoneStatus', 'objective'];
+    let oldStatus = newArray[0][key];
+    let oldStatusObject = newArray[0];
+    newArray.forEach((object, index) => { //array loop
+        const newObj = {}
+        for (let innerKay in object) { // current object's key loop
+            if (keyArray.includes(innerKay) && (object[innerKay] !== oldStatusObject[innerKay] || index === 0)) {
+                newObj[innerKay] = object[innerKay];
+                oldStatusObject[innerKay] = object[innerKay]
+            } else if (!keyArray.includes(innerKay)) {
+                newObj[innerKay] = object[innerKay];
+            }
+        }
+        newUpdatedArray.push(newObj)
+        return true
+    })
+    console.log(newUpdatedArray, 'newUpdatedArray')
+</script>
