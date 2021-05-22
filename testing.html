@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to display the timedifference between UTC and local time.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+   const mmyys = [];
+    for (let i = 1; i <= 13; i++) {
+        const currentDateTime = new Date();
+        currentDateTime.setMonth(currentDateTime.getMonth() - i);
+        let last3rdMont = currentDateTime.getMonth() + 1
+        last3rdMont = (last3rdMont < 10) ? "0"+last3rdMont : last3rdMont
+        const years= currentDateTime.getFullYear()
+        mmyys.push(`${last3rdMont}/${years.toString().substring(2)}.`);
+    }
+    console.log( mmyys,'result'); 
+  document.getElementById("demo").innerHTML = mmyys;
+}
+</script>
+
+</body>
+</html>
