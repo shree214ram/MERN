@@ -25,9 +25,9 @@ export default class sapna {
   
   
         if(NAM)
-        return currentDateTimeFn(constants.getTimeZoneNam)
+          return currentDateTimeFn(constants.getTimeZoneNam)
         if(ERAP)
-        return currentDateTimeFn(constants.getTimeZoneERAP)
+          return currentDateTimeFn(constants.getTimeZoneERAP)
   
         const NAMResult = currentDateTimeFn(constants.getTimeZoneNam)
         return addHours(NAMResult, 14) // Add 14 hrs 
