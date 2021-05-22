@@ -22,8 +22,26 @@ export default class sapna {
             };
             return new Intl.DateTimeFormat('en-US', options).format(event)
         }
-
+  
+  
+        if(NAM)
         return currentDateTimeFn(constants.getTimeZoneNam)
+        if(ERAP)
+        return currentDateTimeFn(constants.getTimeZoneERAP)
+  
+        const NAMResult = currentDateTimeFn(constants.getTimeZoneNam)
+        return addHours(NAMResult, 14) // Add 14 hrs 
 
         {getTimeZoneNam: "America/New_York"}
+  
+  
+        /*   
+        get time and date for APAC
+        */
+        function addHours(currentDateTime,hours){
+           currentDateTime.setHours( currentDateTime.getHours() + hours );
+           return currentDateTime;
+        }
+  
+  
 }
