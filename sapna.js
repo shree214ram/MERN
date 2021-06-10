@@ -17,12 +17,9 @@ searchAdvanceFilter = (params) => {
 }
 
 Page B Code 
-url : B.php?a=1&b=2&backToAfromB=true
-
+url : B.php?a=1&b=2
 
 backToAPage = (params) => {
-  this.setState({searchParam})
-  sessionStorage.setItem("searchParam", this.state.searchParam);
-  const newUrl = A.php?a=1&b=2
-  window.location.pushState(newUrl) // ye kya karega ki backToAfromB parameter hata. dega url me se 
+  const newUrl = A.php?a=1&b=2&backToAfromB=true
+  window.location.href = newUrl // ye kya karega ki backToAfromB parameter add kar dega 
 }
