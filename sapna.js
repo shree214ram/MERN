@@ -4,7 +4,7 @@ Page A Code
 url : A.php?a=1&b=2&backToAfromB=true
 componanatDidMount(){
   const sessionSearchParam = sessionStorage.getItem("searchParam");
-  setState({searchParam})
+  this.setState({searchParam})
   if(window.params.backToAfromB && sessionSearchParam && type of sessionSearchParam === "object" && Object.keys(sessionSearchParam).length > 0 ){
     this.searchAdvanceFilter(sessionSearchParam)
   }
