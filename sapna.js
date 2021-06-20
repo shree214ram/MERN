@@ -45,3 +45,13 @@ backToAPage = (params) => {
   
   
   https://stackoverflow.com/questions/54021037/how-to-mock-window-location-href-with-jest-vuejs
+  
+  
+  
+  https://wildwolf.name/jest-how-to-mock-window-location-href/
+  
+  it('should handle assignments to location.href correctly', (): void => {
+        const target = 'https://example.com/';
+        window.location.href = target;
+        expect(window.location.href).toBe(target);
+    });
