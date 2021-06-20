@@ -39,3 +39,6 @@ backToAPage = (params) => {
   https://stackoverflow.com/questions/66043164/testing-click-event-in-react-testing-library
   
   https://stackoverflow.com/questions/64889165/fireevent-click-is-not-directing-me-to-another-page
+  
+  
+  https://stackoverflow.com/questions/52783144/how-do-you-test-for-the-non-existence-of-an-element-using-jest-and-react-testing
