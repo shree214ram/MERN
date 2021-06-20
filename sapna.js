@@ -42,3 +42,6 @@ backToAPage = (params) => {
   
   
   https://stackoverflow.com/questions/52783144/how-do-you-test-for-the-non-existence-of-an-element-using-jest-and-react-testing
+  
+  
+  https://stackoverflow.com/questions/54021037/how-to-mock-window-location-href-with-jest-vuejs
