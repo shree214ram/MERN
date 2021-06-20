@@ -51,9 +51,21 @@ backToAPage = (params) => {
   https://wildwolf.name/jest-how-to-mock-window-location-href/
   
   it('should handle assignments to location.href correctly', (): void => {
-        const target = 'https://example.com/';
+     
+        expect(getByText('Login')).toBeNull();
+        expect(getByText('Login')).not.toBeInTheDocument();
+        ----
+        509 
+        510
+        511
+        copy kar ke rakhna fir 
+        ----
+        const target = url 
         window.location.href = target;
         expect(window.location.href).toBe(target);
+
+        expect(screen.getByText('Screen A Ka Koi Special word.')).not.toBeNull();
+        expect(getByText('Screen A Ka Koi Special word.')).toBeInTheDocument();
     });
 
 
