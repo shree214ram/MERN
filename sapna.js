@@ -52,8 +52,7 @@ backToAPage = (params) => {
   
   it('should handle assignments to location.href correctly', (): void => {
      
-        expect(getByText('Login')).toBeNull();
-        expect(getByText('Login')).not.toBeInTheDocument();
+        
         ----
         509 
         510
@@ -63,7 +62,10 @@ backToAPage = (params) => {
         const target = url 
         window.location.href = target;
         expect(window.location.href).toBe(target);
-
+        //B page ka existance khatam
+        expect(getByText('Login')).toBeNull();
+        expect(getByText('Login')).not.toBeInTheDocument();
+        //A page ka existance Chalu
         expect(screen.getByText('Screen A Ka Koi Special word.')).not.toBeNull();
         expect(getByText('Screen A Ka Koi Special word.')).toBeInTheDocument();
     });
