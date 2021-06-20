@@ -60,8 +60,12 @@ backToAPage = (params) => {
         copy kar ke rakhna fir 
         ----
         const target = url 
-        window.location.href = target;
-        expect(window.location.href).toBe(target);
+//         window.location.href = target;
+//         expect(window.location.href).toBe(target);
+  
+        expect(window.open).toHaveBeenCalled()
+        expect(window.open).toHaveBeenCalledWith(target)
+  
         //B page ka existance khatam
         expect(getByText('Login')).toBeNull();
         expect(getByText('Login')).not.toBeInTheDocument();
@@ -72,3 +76,4 @@ backToAPage = (params) => {
 
 
 https://stackoverflow.com/questions/63409476/how-to-mock-window-location-href-with-jest-in-react
+https://stackoverflow.com/questions/64799458/how-to-mock-the-javascript-window-open-and-window-close/64799608
