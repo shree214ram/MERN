@@ -55,3 +55,6 @@ backToAPage = (params) => {
         window.location.href = target;
         expect(window.location.href).toBe(target);
     });
+
+
+https://stackoverflow.com/questions/63409476/how-to-mock-window-location-href-with-jest-in-react
