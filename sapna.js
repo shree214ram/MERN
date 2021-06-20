@@ -35,3 +35,5 @@ backToAPage = (params) => {
   const newUrl = A.php?a=1&b=2&backToAfromB=true
   window.location.href = newUrl // ye kya karega ki backToAfromB parameter add kar dega 
 }
+  
+  https://stackoverflow.com/questions/66043164/testing-click-event-in-react-testing-library
