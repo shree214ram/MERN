@@ -37,3 +37,5 @@ backToAPage = (params) => {
 }
   
   https://stackoverflow.com/questions/66043164/testing-click-event-in-react-testing-library
+  
+  https://stackoverflow.com/questions/64889165/fireevent-click-is-not-directing-me-to-another-page
