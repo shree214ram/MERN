@@ -63,8 +63,12 @@ backToAPage = (params) => {
 //         window.location.href = target;
 //         expect(window.location.href).toBe(target);
   
-        expect(window.open).toHaveBeenCalled()
-        expect(window.open).toHaveBeenCalledWith(target)
+//         expect(window.open).toHaveBeenCalled()
+//         expect(window.open).toHaveBeenCalledWith(target)
+  
+        const newWindow = window.open(target, '_self', '');
+        expect(newWindow).toHaveBeenCalled()
+        expect(newWindow).toHaveBeenCalledWith(target)
   
         //B page ka existance khatam
         expect(getByText('Login')).toBeNull();
