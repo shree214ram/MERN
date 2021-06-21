@@ -81,3 +81,9 @@ backToAPage = (params) => {
 
 https://stackoverflow.com/questions/63409476/how-to-mock-window-location-href-with-jest-in-react
 https://stackoverflow.com/questions/64799458/how-to-mock-the-javascript-window-open-and-window-close/64799608
+
+
+1. ReactTestingIndexComponanat.js
+2. React-Router.js
+3. React-Router.test.js
+
