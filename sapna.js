@@ -87,3 +87,10 @@ https://stackoverflow.com/questions/64799458/how-to-mock-the-javascript-window-o
 2. React-Router.js
 3. React-Router.test.js
 
+
+
+var delay = 10000; // milliseconds
+var before = Date.now();
+while (Date.now() < before + delay) {};
+alert('The delay has passed!'); // yaha par tera state change ka code likh dena 
+
