@@ -1,0 +1,143 @@
+reducr: 
+
+const initialState = {
+  products: [],
+  totalPrice : 0
+};
+
+
+
+export default function basketReducer(state = initialState, action) {
+  console.log(action, "action")
+  switch (action.type) {
+    case "ADD_PRODUCT_TO_BASKET":
+      let newProduct = action.payload;
+      let newPrice = action.payload.price;
+      if (state.products.length > 0) {
+
+        newProduct = state.products[0];
+        newProduct.quantity = state.products[0].quantity + 1;
+        newPrice = state.products[0].price + initialState.price;
+      }
+
+      return {
+        ...state,
+        products: [newProduct],
+        totalPrice: newPrice
+      };
+    case "REMOVE_PRODUCT_FROM_BASKET":
+      return state;
+    default:
+      return state;
+  }
+}
+--------------------------
+action:
+ export function addProductToBasket(product) {
+  console.log(product, "shree")
+  return {
+    payload: product,
+    type: "ADD_PRODUCT_TO_BASKET",
+  };
+}
+
+export function removeProductFromBasket(productId) {
+  return {
+    payload: { productId },
+    type: "REMOVE_PRODUCT_FROM_BASKET",
+  };
+}
+-----------------------------------
+index.js
+import { combineReducers, createStore } from "redux";
+import React from "react";
+import ReactDOM from "react-dom";
+import { connect, Provider } from "react-redux";
+
+import basketReducer from "./reducer";
+import Basket from "./Basket";
+import { addProductToBasket } from "./actions";
+
+const rootReducer = combineReducers({
+  basket: basketReducer,
+});
+
+const store = createStore(rootReducer);
+
+function getSampleProduct() {
+  console.log("get");
+  return {
+    id: Math.floor(Math.random() * 10000000),
+    name: "product 1",
+    quantity: 1,
+    price: 1.0,
+  };
+}
+
+function AddProductComponent({ addProduct }) {
+  console.log("add")
+  return <button onClick={() => 
+  
+  addProduct(getSampleProduct())}>Add product to basket11</button>;
+}
+
+const AddProduct = connect(null, (dispatch) => ({
+  addProduct: (product) => dispatch(addProductToBasket(product)),
+}))(AddProductComponent);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Basket />
+
+    <div id="utils">
+      <AddProduct />
+    </div>
+  </Provider>,
+  document.getElementById("root")
+);
+----------------
+basket.js
+import React from "react";
+import { connect } from "react-redux";
+import { removeProductFromBasket } from "./actions";
+
+// You can use console.log for debugging purposes.
+
+// This component is already implemented and working as expected.
+// `Please focus on Redux related parts.
+export function Basket({ products = [], onRemove, totalPrice = 0.0 }) {
+  return (
+    <div>
+      <ul className="products">
+        {products.map((product) => (
+          <li key={product.id} id={`product-${product.id}`}>
+            <span>Name: {product.name}</span>
+            <span>Quantity: {product.quantity}</span>
+            <button
+              id={`remove-${product.id}`}
+              onClick={() => onRemove(product.id)}
+            >
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div>
+        Total price: <span id="total-price">{totalPrice}</span>
+      </div>
+    </div>
+  );
+}
+
+function mapStateToProps(state) {
+  console.log(state, "state");
+  return {products: state.basket.products,
+  totalPrice: state.basket.totalPrice};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Basket);
+
