@@ -3,3 +3,4 @@ const findIndex = this.state.sortStae.findIndex(obj=> {
     console.log(event.sort.Field,'event.sort.Field');
     return obj.Field === event.sort.Field
 })
+https://www.simplilearn.com/tutorials/javascript-tutorial/email-validation-in-javascript
