@@ -71,7 +71,7 @@
     "redux-thunk": "^2.2.0",
     "superagent": "^3.6.3",
     "typeface-roboto": "0.0.43",
-    "validator": "^9.1.1",
+    "validator": "^13.7.0",
     "yargs": "^8.0.2"
   },
   "devDependencies": {
