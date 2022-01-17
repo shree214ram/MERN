@@ -1,0 +1,20 @@
+ye function call karna he TextOnChange Ya AmountOnChange me .
+
+const keyArray = { 0: "name", 1: "model_no", 2: "serial_no", 3: "line_no" }
+
+
+const currentSelectedKey = key;
+let currentSelectedKeyIndex = null;
+
+let iterableKeys = Object.keys(keyArray);
+
+iterableKeys.forEach(key => {
+    if (currentSelectedKey == keyArray[key]) {
+        currentSelectedKeyIndex = currentSelectedKey
+    }
+});
+
+payloadHeader = lines[0].split(',');
+
+let currentRowObject = 
+
