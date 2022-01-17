@@ -1,20 +1,75 @@
-ye function call karna he TextOnChange Ya AmountOnChange me .
 
-const keyArray = { 0: "name", 1: "model_no", 2: "serial_no", 3: "line_no" }
+const getNextSelectedKey = (currentKey) => {
 
+    const keyArray = { 0: "name", 1: "model_no", 2: "serial_no", 3: "line_no" }
 
-const currentSelectedKey = key;
-let currentSelectedKeyIndex = null;
+    const currentSelectedKey = currentKey;
+    let currentSelectedKeyIndex = null;
 
-let iterableKeys = Object.keys(keyArray);
+    let iterableKeys = Object.keys(keyArray);
 
-iterableKeys.forEach(key => {
-    if (currentSelectedKey == keyArray[key]) {
-        currentSelectedKeyIndex = currentSelectedKey
+    iterableKeys.forEach(key => {
+        if (currentSelectedKey == keyArray[key]) {
+            currentSelectedKeyIndex = parseInt(key) + 1
+        }
+    });
+    if (currentSelectedKeyIndex == null) {
+        console.log("Something went wrong while parsing the keys. Please contact IT administrator / Support team for the same. ")
     }
-});
+    return keyArray[currentSelectedKeyIndex] //return next culmn name 
+}
+const handleGridOnPaste = (key, currentRowId, multiLineData) => {
 
-payloadHeader = lines[0].split(',');
+    /*******  currentRowobject *******/
+    ///////// old code /////////
+    // let currentRowObject = key === "amount" ? 
+    // AmountOnChange(key, multiLineData[0].replace(),gridData[currentIndex]) :
+    // TextOnChange(key, multiLineData[0].replace(),gridData[currentIndex]) 
 
-let currentRowObject = 
+    ///////// New Code ////////
+    //for example multiLineData[0]=A\tB\tC, key=model_no
+    const columnBreakData = multiLineData[0].split('\t');
+    let currentRowObject = {}
+    let currentKey = key;
+    columnBreakData?.forEach(value => {
+        currentRowObject = (currentKey === "amount") ?
+            AmountOnChange(currentKey, value.replace(), gridData[currentIndex]) :
+            TextOnChange(currentKey, value.replace(), gridData[currentIndex]);
+        const nextKey = getNextSelectedKey(currentKey)
+        currentKey = nextKey
+    });
+    newGridData.push({ ...currentRowObject, })
+    /*******  nextRowobject *******/
+    ////////// old code /////////
+    // for (let k= 1;) {
+    // let nextRowobject = (key === "amount") ?
+    //     AmountOnChange(key, multiLineData[0].replace(), gridData[currentIndex]) :
+    //     TextOnChange(key, multiLineData[0].replace(), gridData[currentIndex])
+    // }
 
+
+    // New Code 
+    for (let k = 1;) {
+        //for example multiLineData[0]=A\tB\tC, key=model_no
+        const columnBreakDataNext = multiLineData[0].split('\t');
+        let nextRowobject = {}
+        let currentKeyNext = key;
+        columnBreakDataNext?.forEach(value => {
+            nextRowobject = (currentKeyNext === "amount") ?
+                AmountOnChange(currentKeyNext, value.replace(), gridData[currentIndex]) :
+                TextOnChange(currentKeyNext, value.replace(), gridData[currentIndex]);
+            const nextKey = getNextSelectedKey(currentKeyNext)
+            currentKeyNext = nextKey
+        });
+        newGridData.push({ ...nextRowobject, })
+    }
+}
+
+const TextOnChange = (name, value, obj) => {
+    if (value) {
+        obj[name] = value.toUpperCase();
+    } else {
+        obj[name] = "";
+    }
+    return obj;
+}
